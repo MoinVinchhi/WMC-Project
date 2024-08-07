@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const fetchData = async () => {
     if (auth.email) {
       try {
-        const response = await axios.get(`https://wmc-project-av5d.onrender.com/getalluser/${auth.email}`);
+        const response = await axios.get(`http://localhost:5000/getalluser/${auth.email}`);
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);

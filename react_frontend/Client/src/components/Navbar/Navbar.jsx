@@ -206,10 +206,10 @@ const Navbar = () => {
 
                 <Link to='/allusers' className={`hover:no-underline ${window.location.pathname === '/allusers' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Show Users</Link>
               </li>
-              {/* <li className="flex items-center space-x-1 ">
+              <li className="flex items-center space-x-1 ">
 
                 <Link to='/VolunteerRequests' className={`hover:no-underline ${window.location.pathname === '/VolunteerRequests' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Volunteer Requests</Link>
-              </li> */}
+              </li>
               <li className="flex items-center space-x-1 ">
 
                 <Link to='/allinquires' className={`hover:no-underline ${window.location.pathname === '/allinquires' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>All Inquires</Link>

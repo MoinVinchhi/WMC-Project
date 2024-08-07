@@ -8,7 +8,7 @@ const VolunteerRequests = () => {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const response = await axios.get('/api/volunteers');
+                const response = await axios.get('http://localhost:5000/api/volunteers');
                 console.log(response);
                 
                 if (Array.isArray(response.data)) {
@@ -29,7 +29,7 @@ const VolunteerRequests = () => {
 
     const handleApprove = async (id) => {
         try {
-            await axios.post(`/api/volunteers/${id}/approve`);
+            await axios.post(`http://localhost:5000/api/volunteers/${id}/approve`);
             setRequests(prevRequests =>
                 prevRequests.map(request =>
                     request._id === id ? { ...request, status: 'Approved' } : request
@@ -42,7 +42,7 @@ const VolunteerRequests = () => {
 
     const handleReject = async (id) => {
         try {
-            await axios.post(`/api/volunteers/${id}/reject`);
+            await axios.post(`http://localhost:5000/api/volunteers/${id}/reject`);
             setRequests(prevRequests =>
                 prevRequests.map(request =>
                     request._id === id ? { ...request, status: 'Rejected' } : request

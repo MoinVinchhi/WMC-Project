@@ -44,7 +44,7 @@ const ProfilePage = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(`https://wmc-project-av5d.onrender.com/updateuser/${auth.email}`, {
+      const response = await fetch(`http://localhost:5000/updateuser/${auth.email}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const ProfilePage = () => {
   //   const fetchData = async () => {
   //     if (auth.email) {
   //       try {
-  //         const response = await fetch(`https://wmc-project-av5d.onrender.com/getalluser/${auth.email}`, {
+  //         const response = await fetch(`http://localhost:5000/getalluser/${auth.email}`, {
   //           method: 'GET',
   //           headers: {
   //             'Content-Type': 'application/json',

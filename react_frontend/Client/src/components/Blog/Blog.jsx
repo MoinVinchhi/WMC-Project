@@ -12,7 +12,7 @@ function Blog() {
   const [auth] = useAuth();
 
   useEffect(() => {
-    axios.get('https://wmc-project-av5d.onrender.com/api/events')
+    axios.get('http://localhost:5000/api/events')
       .then(response => {
         setEvents(response.data || []);
         setLoading(false);
@@ -39,7 +39,7 @@ function Blog() {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://wmc-project-av5d.onrender.com/api/events/${id}`)
+        axios.delete(`http://localhost:5000/api/events/${id}`)
         .then(() => {
           setEvents(events.filter(event => event._id !== id));
         })

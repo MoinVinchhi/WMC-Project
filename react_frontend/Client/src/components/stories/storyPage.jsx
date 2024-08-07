@@ -22,7 +22,7 @@ const StoryPage = () => {
     const fetchStories = async () => {
       try {
         setLoading(true); // Start loading
-        const response = await fetch('https://wmc-project-av5d.onrender.com/stories');
+        const response = await fetch('http://localhost:5000/stories');
         if (!response.ok) {
           throw new Error('Failed to fetch stories');
         }
@@ -46,7 +46,7 @@ const StoryPage = () => {
     if (!newStory) return;
 
     try {
-      const response = await fetch('https://wmc-project-av5d.onrender.com/stories', {
+      const response = await fetch('http://localhost:5000/stories', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const StoryPage = () => {
   
       if (result.isConfirmed) {
         // Proceed with deletion
-        const response = await fetch(`https://wmc-project-av5d.onrender.com/stories/${id}`, {
+        const response = await fetch(`http://localhost:5000/stories/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ const StoryPage = () => {
   //     cancelButtonText: 'No',
   //     reverseButtons: true
   //   }).then((result) => {
-  //     const response = await fetch(`https://wmc-project-av5d.onrender.com/stories/${id}`, {
+  //     const response = await fetch(`http://localhost:5000/stories/${id}`, {
   //       method: 'DELETE',
   //       headers: {
   //         'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const StoryPage = () => {
   //       body: JSON.stringify({ username: auth.username }), // Sending the username for authorization
   //     });
   //     if (result.isConfirmed) {
-  //       axios.delete(`https://wmc-project-av5d.onrender.com/api/events/${id}`)
+  //       axios.delete(`http://localhost:5000/api/events/${id}`)
   //       .then(() => {
   //         setEvents(events.filter(event => event._id !== id));
   //       })
@@ -156,7 +156,7 @@ const StoryPage = () => {
   //   });
 
   //   try {
-  //     const response = await fetch(`https://wmc-project-av5d.onrender.com/stories/${id}`, {
+  //     const response = await fetch(`http://localhost:5000/stories/${id}`, {
   //       method: 'DELETE',
   //       headers: {
   //         'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ const StoryPage = () => {
   //     reverseButtons: true
   //   }).then((result) => {
   //     if (result.isConfirmed) {
-  //       axios.delete(`https://wmc-project-av5d.onrender.com/api/events/${id}`)
+  //       axios.delete(`http://localhost:5000/api/events/${id}`)
   //       .then(() => {
   //         setEvents(events.filter(event => event._id !== id));
   //       })
