@@ -12,7 +12,7 @@ function VolunteeringForm({ isOpen, onClose, event }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:5000/api/volunteers', {
+    axios.post('https://wmc-project-av5d.onrender.com/api/volunteers', {
       eventId: event._id,
       name: auth.username,
       email: auth.email,
