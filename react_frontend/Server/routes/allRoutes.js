@@ -8,8 +8,7 @@ import { addNews, getNews, updateNews, deleteNews } from '../controllers/newsCon
 import { getStories, addStory, removeStory } from '../controllers/storyController.js';
 import { getAllUsers, getUserByEmail, updateUserByEmail } from '../controllers/userController.js';
 import { checkToken } from '../middlewares/Auth.js';
-import { getVolunteers, addVolunteer, deleteVolunteer, approveVolunteer,  rejectVolunteer } from '../controllers/volunteerController.js';
-
+import { getVolunteers, addVolunteer, deleteVolunteer, approveVolunteer,  rejectVolunteer, VolunteerRequests } from '../controllers/volunteerController.js';
 const router = express.Router();
 
 router.post("/register", register);
@@ -51,6 +50,7 @@ router.post('/api/volunteers', addVolunteer);
 router.delete('/api/volunteers/:id', deleteVolunteer);
 router.post('/api/volunteers/:id/reject', rejectVolunteer);
 router.post('/api/volunteers/:id/approve', approveVolunteer);
+router.get('/VolunteerRequests', VolunteerRequests);
 
 
 

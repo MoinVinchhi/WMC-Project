@@ -5,31 +5,66 @@ const VolunteerRequests = () => {
     const [requests, setRequests] = useState([]);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchRequests = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/volunteers');
-                console.log(response);
+    // useEffect(() => {
+    //     axios.get('http://localhost:5000/VolunteerRequests')
+    //     .then(response => {
+    //         setRequests(response.data);
+
+    //     // const statusMap = {};
+    //     // response.data.forEach(volunteer => {
+    //     //   statusMap[volunteer.eventId] = volunteer.status;
+    //     // });
+    //     setVolunteerStatus(statusMap);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching volunteer requests:', error);
+    //     setError('Error fetching volunteer requests.');
+    //   });
+    //     // const fetchRequests = async () => {
+    //     //     try {
+    //     //         const response = await axios.get('http://localhost:5000/VolunteerRequests');
                 
-                if (Array.isArray(response.data)) {
-                    setRequests(response.data);
-                } else {
-                    console.error('Unexpected data format:', response.data);
-                    setError('Unexpected data format.');
-                }
-            } catch (error) {
+    //     //         console.log(response);
+                
+    //     //         if (Array.isArray(response.data)) {
+    //     //             setRequests(response.data);
+    //     //         } else {
+    //     //             console.error('Unexpected data format:', response.data);
+    //     //             setError('Unexpected data format.');
+    //     //         }
+    //     //     } catch (error) {
+    //     //         console.error('Error fetching volunteer requests:', error);
+    //     //         setError('Error fetching volunteer requests.');
+    //     //     }
+    //     // };
+    
+    //     // fetchRequests();
+    // }, []);
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/VolunteerRequests', { withCredentials: true })
+            .then(response => {
+                console.log(response.error);
+                setRequests(response);
+    
+                // const statusMap = {};
+                // response.data.forEach(volunteer => {
+                //   statusMap[volunteer.eventId] = volunteer.status;
+                // });
+                // setVolunteerStatus(statusMap);
+            })
+            .catch(error => {
                 console.error('Error fetching volunteer requests:', error);
                 setError('Error fetching volunteer requests.');
-            }
-        };
-    
-        fetchRequests();
+            });
     }, []);
     
 
     const handleApprove = async (id) => {
         try {
-            await axios.post(`http://localhost:5000/api/volunteers/${id}/approve`);
+            await axios.post(`http://localhost:5000//api/volunteers/${id}/approve`, {}, {
+                withCredentials: true
+            });
             setRequests(prevRequests =>
                 prevRequests.map(request =>
                     request._id === id ? { ...request, status: 'Approved' } : request
@@ -42,7 +77,9 @@ const VolunteerRequests = () => {
 
     const handleReject = async (id) => {
         try {
-            await axios.post(`http://localhost:5000/api/volunteers/${id}/reject`);
+            await axios.post(`http://localhost:5000//api/volunteers/${id}/reject`, {}, {
+                withCredentials: true
+            });
             setRequests(prevRequests =>
                 prevRequests.map(request =>
                     request._id === id ? { ...request, status: 'Rejected' } : request
