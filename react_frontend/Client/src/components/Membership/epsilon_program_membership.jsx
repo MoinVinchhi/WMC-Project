@@ -119,7 +119,7 @@ const MembershipTier = ({ tier, benefits, profileLink, newsLink, whatYouCanDo, m
 
   const [News, setNews] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5000/news')
+    axios.get('https://wmc-project-av5d.onrender.com/news')
     .then(response => {
       const sortedNews = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
       setNews(sortedNews || []);
@@ -356,7 +356,7 @@ const MembershipLayout = () => {
 
   const handleCancelMembership = async () => {
     try {
-      const response = await fetch('http://localhost:5000/cancel', {
+      const response = await fetch('https://wmc-project-av5d.onrender.com/cancel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: auth.username }),

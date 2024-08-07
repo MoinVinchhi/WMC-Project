@@ -19,7 +19,7 @@ function Donate() {
   const fetchData = async () => {
     if (auth.email) {
       try {
-        const response = await fetch(`http://localhost:5000/getalluser/${auth.email}`);
+        const response = await fetch(`https://wmc-project-av5d.onrender.com/getalluser/${auth.email}`);
         const data = await response.json();
         setUserData(data);
       } catch (error) {
@@ -30,7 +30,7 @@ function Donate() {
 
   const fetchTotalDonations = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/total-donations`);
+      const response = await fetch(`https://wmc-project-av5d.onrender.com/total-donations`);
       const data = await response.json();
       setTotalDonations(data.total);
     } catch (error) {
@@ -62,7 +62,7 @@ function Donate() {
     }
     setError(null);
     try {
-      const response = await fetch(`http://localhost:5000/donate/${auth.email}`, {
+      const response = await fetch(`https://wmc-project-av5d.onrender.com/donate/${auth.email}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

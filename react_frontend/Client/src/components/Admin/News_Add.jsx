@@ -15,7 +15,7 @@ const AdminNewsForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/news', {
+      const response = await fetch('https://wmc-project-av5d.onrender.com/news', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, image }),
@@ -32,7 +32,7 @@ const AdminNewsForm = () => {
         setDescription('');
         setImage('');
         // Refresh news list
-        const updatedResponse = await fetch('http://localhost:5000/news');
+        const updatedResponse = await fetch('https://wmc-project-av5d.onrender.com/news');
         const updatedData = await updatedResponse.json();
         setNewsItems(updatedData);
       } else {
@@ -57,7 +57,7 @@ const AdminNewsForm = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:5000/news');
+        const response = await fetch('https://wmc-project-av5d.onrender.com/news');
         const data = await response.json();
         setNewsItems(data);
       } catch (error) {
@@ -77,7 +77,7 @@ const AdminNewsForm = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/news/${editingNews}`, {
+      const response = await fetch(`https://wmc-project-av5d.onrender.com/news/${editingNews}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, image }),
@@ -95,7 +95,7 @@ const AdminNewsForm = () => {
         setDescription('');
         setImage('');
         // Refresh news list
-        const updatedResponse = await fetch('http://localhost:5000/news');
+        const updatedResponse = await fetch('https://wmc-project-av5d.onrender.com/news');
         const updatedData = await updatedResponse.json();
         setNewsItems(updatedData);
       } else {
@@ -119,7 +119,7 @@ const AdminNewsForm = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/news/${id}`, {
+      const response = await fetch(`https://wmc-project-av5d.onrender.com/news/${id}`, {
         method: 'DELETE',
       });
 
@@ -131,7 +131,7 @@ const AdminNewsForm = () => {
           confirmButtonText: 'OK',
         });
         // Refresh news list
-        const updatedResponse = await fetch('http://localhost:5000/news');
+        const updatedResponse = await fetch('https://wmc-project-av5d.onrender.com/news');
         const updatedData = await updatedResponse.json();
         setNewsItems(updatedData);
       } else {

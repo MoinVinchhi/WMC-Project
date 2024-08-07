@@ -122,7 +122,7 @@ function Quiz() {
 
   const finishQuiz = async () => {
     try {
-      const response = await fetch('http://localhost:5000/quizPoints', {
+      const response = await fetch('https://wmc-project-av5d.onrender.com/quizPoints', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: auth.username, addPoints: score }),

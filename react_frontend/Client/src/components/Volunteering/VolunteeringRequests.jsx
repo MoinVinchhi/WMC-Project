@@ -8,7 +8,7 @@ const VolunteerRequests = () => {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/volunteers');
+                const response = await axios.get('https://wmc-project-av5d.onrender.com/api/volunteers');
                 if (Array.isArray(response.data)) {
                     setRequests(response.data);
                 } else {
@@ -26,7 +26,9 @@ const VolunteerRequests = () => {
 
     const handleApprove = async (id) => {
         try {
-            await axios.post(`http://localhost:5000/api/volunteers/${id}/approve`);
+            await axios.post(`https://wmc-project-av5d.onrender.com//api/volunteers/${id}/approve`, {}, {
+                withCredentials: true
+            });
             setRequests(prevRequests =>
                 prevRequests.map(request =>
                     request._id === id ? { ...request, status: 'Approved' } : request
@@ -39,7 +41,9 @@ const VolunteerRequests = () => {
 
     const handleReject = async (id) => {
         try {
-            await axios.post(`http://localhost:5000/api/volunteers/${id}/reject`);
+            await axios.post(`https://wmc-project-av5d.onrender.com//api/volunteers/${id}/reject`, {}, {
+                withCredentials: true
+            });
             setRequests(prevRequests =>
                 prevRequests.map(request =>
                     request._id === id ? { ...request, status: 'Rejected' } : request

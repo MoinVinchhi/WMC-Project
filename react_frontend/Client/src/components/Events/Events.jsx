@@ -40,7 +40,7 @@ const Events = () => {
     formData.append('points', points);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/events', formData, {
+      const response = await axios.post('https://wmc-project-av5d.onrender.com/api/events', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -70,11 +70,22 @@ const rejectVolunteer = async (req, res) => {
     }
 };
 
+const VolunteerRequests = async(req,res) => {
+    try{
+        const response = await Volunteer.find();
+        res.status(200).send(response);
+    }
+    catch{
+        res.status(500).send('Error in getting volunteer request.');
+    }
+}
+
 
 export {
     getVolunteers,
     addVolunteer,
     deleteVolunteer,
     approveVolunteer,
-    rejectVolunteer
+    rejectVolunteer,
+    VolunteerRequests
 };
