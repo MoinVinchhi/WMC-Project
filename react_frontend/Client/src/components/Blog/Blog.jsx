@@ -68,7 +68,7 @@ function Blog() {
     .sort((a, b) => moment(a.date) - moment(b.date));
 
   const pastEvents = events
-    .filter(event => moment(event.date).isBefore(currentDate))
+    .filter(event => moment(event.date).isBefore(currentDate-1))
     .sort((a, b) => moment(b.date) - moment(a.date));
 
   const renderEvents = (eventsList) => (
@@ -89,11 +89,11 @@ function Blog() {
               <h4 className="text-left text-2xl m-0 p-0 font-semibold text-gray-300 mb-2">{event.title}</h4>
               <hr className='bg-black mb-2 opacity-25' />
               <p className="text-left text-md leading-7 text-gray-300 mb-5">{event.description}</p>
-              <p className='text-left text-sm leading-6 text-gray-300 mb-2'>
+              <div className='text-left text-sm leading-6 text-gray-300 mb-2'>
                 <h4 className=''>Time: {event.time}</h4>
                 <h4 className=''>Venue: {event.venue}</h4>
                 <h4 className=''>Duration: {event.duration}</h4>
-              </p>
+              </div>
 
               {auth.isAdmin && (
                 <button
@@ -104,10 +104,10 @@ function Blog() {
                 </button>
               )}
 
-              {moment(event.date).isSameOrAfter(currentDate) && (
+              {auth.isLoggedIn && !moment(event.date).isBefore(currentDate) && (
                 <button
                   onClick={() => handleRegister(event)}
-                  className="w-fit mt-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                  className="border-4 w-fit mt-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
                 >
                   Register
                 </button>

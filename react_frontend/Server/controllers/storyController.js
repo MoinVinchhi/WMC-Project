@@ -21,7 +21,7 @@ export const addStory = async (req, res) => {
     }
     try {
       const userData = await User.findOne({name: username});
-      // console.log(userData);
+      console.log(userData);
       const imageLink = userData.image;
       const newStory = new Story({ username, story, image: imageLink });
       const savedStory = await newStory.save();
