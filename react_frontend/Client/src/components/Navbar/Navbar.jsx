@@ -208,7 +208,7 @@ const Navbar = () => {
               </li>
               <li className="flex items-center space-x-1 ">
 
-                <Link to='/VolunteerRequests' className={`hover:no-underline ${window.location.pathname === '/VolunteerRequests' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Volunteer Requests</Link>
+                <Link to='/VolunteeringRequests' className={`hover:no-underline ${window.location.pathname === '/VolunteeringRequests' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Volunteer Requests</Link>
               </li>
               <li className="flex items-center space-x-1 ">
 

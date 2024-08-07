@@ -29,9 +29,6 @@ const StoryPage = () => {
         const data = await response.json();
         setStories(data);
          console.log('Fetched stories:', data); // Log the data for debugging
-        // Generate random colors for each story
-        const newColors = data.map(() => getRandomColor());
-        setColors(newColors);
       } catch (error) {
         console.error('Error fetching stories:', error);
       } finally {
@@ -119,91 +116,6 @@ const StoryPage = () => {
       console.error('Error removing story:', error);
     }
   };
-
-  // const handleRemoveStory = async (id) => {
-  //   Swal.fire({
-  //     title: 'Are you sure?',
-  //     text: 'This event will be removed from events.',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Yes',
-  //     cancelButtonText: 'No',
-  //     reverseButtons: true
-  //   }).then((result) => {
-  //     const response = await fetch(`http://localhost:5000/stories/${id}`, {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ username: auth.username }), // Sending the username for authorization
-  //     });
-  //     if (result.isConfirmed) {
-  //       axios.delete(`http://localhost:5000/api/events/${id}`)
-  //       .then(() => {
-  //         setEvents(events.filter(event => event._id !== id));
-  //       })
-  //       .catch(error => {
-  //         console.error('Error removing event:', error);
-  //         alert('Error removing event: ' + error.message);
-  //       });
-  
-  //       Swal.fire(
-  //         'Removed!',
-  //         'Event has been removed.',
-  //         'success'
-  //       );
-  //     }
-  //   });
-
-  //   try {
-  //     const response = await fetch(`http://localhost:5000/stories/${id}`, {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ username: auth.username }), // Sending the username for authorization
-  //     });
-  
-  //     if (!response.ok) {
-  //       const errorResponse = await response.json();
-  //       throw new Error(errorResponse.error);
-  //     }
-  
-  //     // Remove the story from state after successful deletion
-  //     setStories(stories.filter(story => story._id !== id));
-  //   } catch (error) {
-  //     console.error('Error removing story:', error);
-  //   }
-  // };
-
-  // const handleRemoveEvent = (id) => {
-  //   Swal.fire({
-  //     title: 'Are you sure?',
-  //     text: 'This event will be removed from events.',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Yes',
-  //     cancelButtonText: 'No',
-  //     reverseButtons: true
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       axios.delete(`http://localhost:5000/api/events/${id}`)
-  //       .then(() => {
-  //         setEvents(events.filter(event => event._id !== id));
-  //       })
-  //       .catch(error => {
-  //         console.error('Error removing event:', error);
-  //         alert('Error removing event: ' + error.message);
-  //       });
-  
-  //       Swal.fire(
-  //         'Removed!',
-  //         'Event has been removed.',
-  //         'success'
-  //       );
-  //     }
-  //   });
-  // };
 
   const containerBgColor = theme === 'blue' ? 'bg-blue-primary-bg' : 'bg-dark-primary-bg';
   const textPrimary = theme === 'blue' ? 'text-blue-text-light' : 'text-dark-text-light';

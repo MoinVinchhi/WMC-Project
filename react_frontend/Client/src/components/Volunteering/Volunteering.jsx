@@ -43,8 +43,17 @@ function Volunteering() {
       ...prevStatus,
       [event._id]: 'Pending'
     }));
+
+    // Send interest request to the backend
+    axios.post('http://localhost:5000/api/volunteers', { eventId: event._id, userId: auth.userId })
+      .then(response => {
+        // Optionally handle the response
+      })
+      .catch(error => {
+        console.error('Error showing interest:', error);
+      //   alert('Error showing interest: ' + error.message);
+      });
   };
-  
 
   const renderEvents = (eventsList) => (
     <div className='flex justify-end gap-8'>
@@ -69,13 +78,51 @@ function Volunteering() {
                 <h4 className=''>Venue: {event.venue}</h4>
                 <h4 className=''>Duration: {event.duration}</h4>
               </p>
-              <button
+
+              {volunteerStatus[event._id] == 'pending' ? (<>
+                <button
+                className={`w-fit mt-2 px-4 py-2 bg-yellow-400 text-white rounded-lg cursor-not-allowed`}
+              >
+                Pending
+              </button>
+              </>):(<>
+
+              {volunteerStatus[event._id] == 'Approved' ? (<>
+                <button
+                className={`w-fit mt-2 px-4 py-2 bg-green-500 text-white rounded-lg cursor-not-allowed`}
+              >
+                Approved
+              </button>
+              </>):(<>
+
+              {volunteerStatus[event._id] == 'Rejected' ? (<>
+                <button
+                className={`w-fit mt-2 px-4 py-2 bg-red-500 text-white rounded-lg cursor-not-allowed`}
+              >
+                Rejected
+              </button>
+              </>):(<>
+                <button
+                onClick={() => handleShowInterest(event)}
+                className={`w-fit mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg`}
+              >
+                Show Interest in this Event
+              </button>
+              </>)}
+              </>)}
+              </>)}
+
+
+              {/* <button
                 onClick={() => handleShowInterest(event)}
                 className={`w-fit mt-2 px-4 py-2 text-white rounded-lg ${volunteerStatus[event._id] === 'Pending' ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
-                disabled={volunteerStatus[event._id] === 'Pending'}
+                disabled={volunteerStatus[event._id] === 'pending'}
               >
-                {volunteerStatus[event._id] === 'Pending' ? 'Pending' : 'Show Interest in this Event'}
-              </button>
+                {volunteerStatus[event._id] === 'pending' ? 'pending' : 'Show Interest in this Event'}
+              </button> */}
+              {/* {volunteerStatus[event._id] && (
+                <p className="text-left text-sm leading-6 text-gray-300 mt-2">Status: {volunteerStatus[event._id]}</p>
+              )} */}
             </div>
           </div>
         ))}
@@ -85,32 +132,32 @@ function Volunteering() {
 
   return (
     <div className='profileContainer'>
-    <div className='relative flex justify-end p-8 min-h-screen overflow-hidden'>
-      <div className='fixed left-0 top-30 flex flex-col p-16'>
-        <h1 className='text-3xl text-left text-white m-0 p-0'>VOLUNTEERING</h1>
-      </div>
-      <div className="max-w-screen-lg justify-end w-full z-[1]">
-        {loading ? (
-          <div className="text-center py-16">
-            <div className="spinner-border text-orange-500 mb-4" role="status">
-              <span className="visually-hidden">Loading...</span>
+      <div className='relative flex justify-end p-8 min-h-screen overflow-hidden'>
+        <div className='fixed left-0 top-30 flex flex-col p-16'>
+          <h1 className='text-3xl text-left text-white m-0 p-0'>VOLUNTEERING</h1>
+        </div>
+        <div className="max-w-screen-lg justify-end w-full z-[1]">
+          {loading ? (
+            <div className="text-center py-16">
+              <div className="spinner-border text-orange-500 mb-4" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <p>Loading events...</p>
             </div>
-            <p>Loading events...</p>
-          </div>
-        ) : (
-          <div className="eventPart p-4 mb-12">
-            {renderEvents(events)}
-          </div>
-        )}
-        {selectedEvent && (
-          <VolunteeringForm
-            isOpen={Boolean(selectedEvent)}
-            onClose={() => setSelectedEvent(null)}
-            event={selectedEvent}
-          />
-        )}
+          ) : (
+            <div className="eventPart p-4 mb-12">
+              {renderEvents(events)}
+            </div>
+          )}
+          {selectedEvent && (
+            <VolunteeringForm
+              isOpen={Boolean(selectedEvent)}
+              onClose={() => setSelectedEvent(null)}
+              event={selectedEvent}
+            />
+          )}
+        </div>
       </div>
-    </div>
     {/* vertical */}
     <div className='absolute top-0 left-0 w-screen h-screen opacity-5 flex'>
             <div className='w-[0.5px]  ml-5 bg-white h-screen'></div>

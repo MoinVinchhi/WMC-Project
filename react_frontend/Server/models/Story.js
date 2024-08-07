@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const storySchema = new mongoose.Schema({
-    username: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    username: String,
     story: String,
     image: String,  
     date: { type: Date, default: Date.now }

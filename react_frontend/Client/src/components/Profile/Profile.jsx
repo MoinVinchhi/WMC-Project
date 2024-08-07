@@ -5,8 +5,8 @@ import { RiEye2Fill, RiEyeCloseFill } from "react-icons/ri";
 const ProfilePage = () => {
   const [userData, setUserData] = useAuth();
   const [auth] = useAuth();
-  const [edit, setEdit] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [edit, setEdit] = useState(true);
+  const [showPassword, setShowPassword] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     dob: '',
@@ -15,10 +15,6 @@ const ProfilePage = () => {
     password: '',
     image: ''
   });
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
 
   const handleEditToggle = () => {
     if (edit) {
@@ -64,33 +60,6 @@ const ProfilePage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (auth.email) {
-  //       try {
-  //         const response = await fetch(`http://localhost:5000/getalluser/${auth.email}`, {
-  //           method: 'GET',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //         });
-
-  //         if (!response.ok) {
-  //           throw new Error(`HTTP error! status: ${response.status}`);
-  //         }
-
-  //         const data = await response.json();
-  //         setUserData(data);
-          
-  //       } catch (error) {
-  //         console.error('Error fetching user data:', error);
-  //       }
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [auth.email]);
-
   if (!userData) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-900">
@@ -112,25 +81,9 @@ const ProfilePage = () => {
             <div className="flex flex-col items-center">
               <img
                 className="h-80 rounded-lg object-cover"
-                src={formData.image}
+                src={auth.image}
                 alt='profile picture'
               />
-              <div className="mt-4 flex flex-col gap-4">
-                <button
-                  className="bg-yellow-500 text-gray-900 font-semibold py-1 px-2 rounded-lg mr-2"
-                  onClick={() => edit && setFormData({ ...formData, image: 'new_image_url' })}
-                  disabled={!edit}
-                >
-                  Change
-                </button>
-                <button
-                  className="bg-gray-600 text-white font-semibold py-1 px-2 rounded-lg"
-                  onClick={() => edit && setFormData({ ...formData, image: '' })}
-                  disabled={!edit}
-                >
-                  Remove
-                </button>
-              </div>
             </div>
 
             <div className='px-16'>
@@ -141,7 +94,7 @@ const ProfilePage = () => {
                     className={`w-full mt-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 ${cursorStyle}`}
                     type="text"
                     name="name"
-                    placeholder={userData.name}
+                    placeholder={auth.username}
                     value={formData.name}
                     onChange={handleChange}
                     disabled={!edit}
@@ -229,7 +182,8 @@ const ProfilePage = () => {
                       disabled={!edit}
                     />
                   </div>
-                  <div>
+                  <div className='flex '>
+                    <div className='flex flex-col'>
                     <label className={`block text-gray-500 ${textColor}`}>Change Password</label>
                     <input
                       className={`w-full mt-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 ${cursorStyle}`}
@@ -240,37 +194,18 @@ const ProfilePage = () => {
                       onChange={handleChange}
                       disabled={!edit}
                     />
-                    <button
-                      type="button"
-                      onClick={handleShowPassword}
-                      className={`border w-7 rounded mt-4 p-1 ${!edit && 'cursor-not-allowed'}`}
-                      disabled={!edit}
-                    >
-                      {showPassword ? <RiEye2Fill /> : <RiEyeCloseFill />}
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {edit && (
-                <div className='mt-8'>
-                  <button
-                    className='bg-blue-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mr-2'
-                    onClick={handleSave}
-                  >
-                    Save
-                  </button>
-                </div>
-              )}
             </div>
 
             <div className="flex items-center justify-center mt-4">
-              <button
-                onClick={handleEditToggle}
+              {/* <button
                 className={`m-auto w-30 py-2 px-4 rounded ${edit ? 'bg-red-500 hover:bg-red-600' : 'bg-yellow-500 hover:bg-yellow-600'}`}
               >
-                {edit ? 'Cancel' : 'Edit'}
-              </button>
+                {edit ? 'Edit' : 'Edit'}
+              </button> */}
             </div>
         </div>
 
