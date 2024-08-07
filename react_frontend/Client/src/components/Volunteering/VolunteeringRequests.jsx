@@ -9,8 +9,6 @@ const VolunteerRequests = () => {
         const fetchRequests = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/volunteers');
-                console.log(response);
-                
                 if (Array.isArray(response.data)) {
                     setRequests(response.data);
                 } else {
@@ -22,10 +20,9 @@ const VolunteerRequests = () => {
                 setError('Error fetching volunteer requests.');
             }
         };
-    
+
         fetchRequests();
     }, []);
-    
 
     const handleApprove = async (id) => {
         try {
@@ -68,22 +65,37 @@ const VolunteerRequests = () => {
                             <p><strong>Email:</strong> {request.email}</p>
                             <p><strong>Message:</strong> {request.message}</p>
                             <p><strong>Status:</strong> {request.status}</p>
-                            {request.status === 'Pending' && (
                                 <div className="mt-2">
+                                {request.status === 'pending' ? (<>
+                                <button
+                                  onClick={() => handleApprove(request._id)}
+                                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mr-2"
+                                >
+                                  Accept
+                                </button>
+                                <button
+                                  onClick={() => handleReject(request._id)}
+                                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                                >
+                                  Reject
+                                </button>
+                                </>):(<>
+                                {request.status === 'Rejected' ? (<>
                                     <button
-                                        onClick={() => handleApprove(request._id)}
-                                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mr-2"
-                                    >
-                                        Approve
-                                    </button>
+                                  className="bg-red-500 hover:bg-green-700 text-white px-4 py-2 rounded mr-2 cursor-not-allowed"
+                                >
+                                  Rejected
+                                </button>
+                                </>):(<>
                                     <button
-                                        onClick={() => handleReject(request._id)}
-                                        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-                                    >
-                                        Reject
-                                    </button>
-                                </div>
-                            )}
+                                  className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded mr-2 cursor-not-allowed"
+                                >
+                                  Approved
+                                </button>
+                                </>)}
+                                </>)}
+                                
+                              </div>
                         </li>
                     ))}
                 </ul>

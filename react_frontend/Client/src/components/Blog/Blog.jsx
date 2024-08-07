@@ -83,6 +83,7 @@ function Blog() {
               <img src={event.image || './src/assets/images/blank.png'} className="absolute inset-0 object-cover w-full h-full opacity-30" />
               <p className="text-5xl font-bold">{moment(event.date).format('D')}</p>
               <p className="text-4xl">{moment(event.date).format('MMM')}</p>
+              <p className="text-sm">{moment(event.date).format('yyyy')}</p>
             </div>
 
             <div className="flex flex-col justify-items-start p-4 flex-1">
