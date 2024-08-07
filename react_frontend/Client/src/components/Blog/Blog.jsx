@@ -87,13 +87,13 @@ function Blog() {
             </div>
 
             <div className="flex flex-col justify-items-start p-4 flex-1">
-              <h4 className="text-left text-2xl m-0 p-0 font-semibold text-gray-300 mb-2">{event.title}</h4>
+              <h4 className="text-left text-2xl m-0 p-0 font-semibold text-gray-200 mb-2">{event.title}</h4>
               <hr className='bg-black mb-2 opacity-25' />
-              <p className="text-left text-md leading-7 text-gray-300 mb-5">{event.description}</p>
+              <p className="text-left text-md leading-7 text-gray-200 mb-5">{event.description}</p>
               <div className='text-left text-sm leading-6 text-gray-300 mb-2'>
-                <h4 className=''>Time: {event.time}</h4>
-                <h4 className=''>Venue: {event.venue}</h4>
-                <h4 className=''>Duration: {event.duration}</h4>
+                <h4>Time: {event.time}</h4>
+                <h4>Venue: {event.venue}</h4>
+                <h4>Duration: {event.duration}</h4>
               </div>
 
               {auth.isAdmin && (
@@ -105,14 +105,20 @@ function Blog() {
                 </button>
               )}
 
-              {auth.isLoggedIn && !moment(event.date).isBefore(currentDate) && (
+              {auth.isLoggedIn && !moment(event.date).isBefore(currentDate) ? (<>
                 <button
                   onClick={() => handleRegister(event)}
                   className="border-4 w-fit mt-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
                 >
                   Register
                 </button>
-              )}
+                </>):(<>
+                  <button
+                  onClick={() => handleRegister(event)}
+                  className="border-4 w-fit mt-2 px-4 py-2 bg-orange-400 text-white rounded-lg cursor-not-allowed"
+                >
+                  Registeration closed
+                </button></>)}
             </div>
           </div>
         ))}
