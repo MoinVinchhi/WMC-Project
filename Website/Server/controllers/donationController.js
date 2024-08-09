@@ -8,7 +8,7 @@ export const donationByUsername =  async (req, res) => {
     const {addPoints} =req.body;
   
     try {
-      const user = await User.findOne({ email: username });
+      const user = await User.findOne({ name: username });
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }

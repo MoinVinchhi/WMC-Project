@@ -15,7 +15,6 @@ const StoryPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { theme } = useTheme();
-  const [colors, setColors] = useState([]);
   axios.defaults.withCredentials = true;
 
   useEffect(() => { 
@@ -27,7 +26,7 @@ const StoryPage = () => {
           throw new Error('Failed to fetch stories');
         }
         const data = await response.json();
-        setStories(data);
+        setStories(data.reverse());
          console.log('Fetched stories:', data); // Log the data for debugging
       } catch (error) {
         console.error('Error fetching stories:', error);
@@ -57,11 +56,20 @@ const StoryPage = () => {
       }
 
       const addedStory = await response.json();
-      setStories([...stories, addedStory]);
+
+      await Swal.fire({
+        title: 'Added!',
+        text: 'Your story has been added successfully.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+
+      setStories([addedStory, ...stories]);
       setNewStory('');
     } catch (error) {
       console.error('Error adding story:', error);
     }
+    
   };
 
   const handleRemoveStory = async (id) => {

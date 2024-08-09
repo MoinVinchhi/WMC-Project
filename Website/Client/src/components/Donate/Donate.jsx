@@ -12,7 +12,7 @@ function Donate() {
   const [error, setError] = useState(null);
   const [amount, setAmount] = useState(0);
   const [totalDonations, setTotalDonations] = useState(0);
-  const [showThankYou, setShowThankYou] = useState(false); // State for thank you message
+  const [showThankYou, setShowThankYou] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
 
@@ -49,8 +49,8 @@ function Donate() {
     }
   }, [userData.points]);
 
-  const handleDonate = async (donationAmount) => {
-    event.preventDefault();
+  const handleDonate = async (donationAmount, event) => {
+    event.preventDefault(); // Fix the event parameter here
     if (donationAmount <= 0) {
       Swal.fire({
         title: 'Error!',
@@ -84,7 +84,7 @@ function Donate() {
         setAuth(newAuth);
         localStorage.setItem('auth', JSON.stringify(newAuth));
         localStorage.setItem('userData', JSON.stringify(data.user));
-
+  
         await Swal.fire({
           title: 'Thank You!',
           text: 'Your donation was successful!',
@@ -254,8 +254,7 @@ function Donate() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={(e) => {
-                          e.preventDefault();
-                          handleDonate(amount);
+                          handleDonate(amount, e); // Pass the event here
                         }}
                       >
                         Donate Now

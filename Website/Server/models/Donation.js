@@ -7,4 +7,4 @@ const donationSchema = new mongoose.Schema({
 });
 
 const Donation = mongoose.model('Donation', donationSchema);
-export default  Donation; // Use named export here
+export default  Donation;
