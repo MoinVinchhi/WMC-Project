@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
-import axios from 'axios';
-import { useAuth } from '../../creatContext';
+import React, { useState } from "react";
+import Modal from "react-modal";
+import axios from "axios";
+import { useAuth } from "../../creatContext";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 function VolunteeringForm({ isOpen, onClose, event }) {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [auth] = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('https://wmc-project-av5d.onrender.com/api/volunteers', {
-      eventId: event._id,
-      name: auth.username,
-      email: auth.email,
-      message,
-    })
-    .then(() => {
-        alert('Your interest has been registered!');
+    axios
+      .post("https://wmc-project-av5d.onrender.com/api/volunteers", {
+        eventId: event._id,
+        name: auth.username,
+        email: auth.email,
+        message,
+      })
+      .then(() => {
+        alert("Your interest has been registered!");
         onClose();
-    })
-    .catch(error => {
-        console.error('Error submitting form:', error);
-        alert('Error submitting form: ' + error.message);
-    });
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+        alert("Error submitting form: " + error.message);
+      });
   };
 
   return (
@@ -38,9 +39,11 @@ function VolunteeringForm({ isOpen, onClose, event }) {
     >
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full relative z-50">
         <h2 className="text-3xl mb-4">Volunteer for {event.title}</h2>
-        <form onSubmit={handleSubmit} className='space-y-4'>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Message</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Message
+            </label>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
