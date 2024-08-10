@@ -1,38 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../creatContext';
 import { ReactTyped } from "react-typed";
-import { useTheme } from '../../usetheamContext';
 import axios from 'axios';
 import moment from 'moment';
 import './Home.css'
-import { truthStages } from '../content.js';
-import { improvementTips } from '../content.js';
-import { Link } from 'react-router-dom';
-
-
-const HoverCard = ({ title, description, image }) => {
-  return (
-    <div className="max-w-2xl rounded overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2">
-      <div className="relative overflow-hidden">
-        <img className="w-full object-cover transition-transform duration-300 transform hover:scale-110" src={image} alt={title} />
-      </div>
-      <div className="px-6 py-4 bg-white">
-        <div className="font-bold text-xl mb-2 text-gray-800">{title}</div>
-        <p className="text-gray-700 text-base h-0 opacity-0 transition-all duration-300 overflow-hidden group-hover:h-auto group-hover:opacity-100">{description}</p>
-      </div>
-    </div>
-  );
-};
+import ReactGA from 'react-ga4';
 
 
 function Home() {
-  const [auth] = useAuth();
   const [events, setEvents] = useState([]);
   const [stories, setStories] = useState([]);
-  const [News, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { theme } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  ReactGA.send ({
+    hitType: 'pageview',
+    page: '/',
+    title: 'Home'
+  });
 
   axios.defaults.withCredentials = true;
 
@@ -86,22 +70,6 @@ function Home() {
 
   const upcomingEvents = events.slice(0, 3);
   const lastFiveStories = stories.slice(0, 5);
-  const displayNews = News.slice(0, 3);
-
-  const storyStyles = [
-    "bg-yellow-300 rotate-2",
-    "bg-pink-200 -rotate-1",
-    "bg-blue-200 rotate-1",
-    "bg-green-200 -rotate-2",
-    "bg-purple-200 rotate-3",
-  ];
-
-  const containerClass = `max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center items-center ${theme === 'blue' ? 'text-blue-text-light' : 'text-dark-text-light'}`;
-  const sectionClass = `w-full py-16 px-4 ${theme === 'blue' ? 'bg-blue-primary-bg' : 'bg-dark-primary-bg'} text-white`;
-  const goalItemClass = `flex items-center mb-2 animate-fadeIn ${theme === 'blue' ? 'bg-blue-highlight' : 'bg-dark-highlight'} rounded-lg shadow-md p-4 md:p-6 lg:p-8`;
-  const upcomingEventsClass = `py-16 px-4 ${theme === 'blue' ? 'bg-blue-primary-bg' : 'bg-dark-primary-bg'} text-white`;
-  const latestStoriesClass = `py-16 px-4 ${theme === 'blue' ? 'bg-blue-primary-bg' : 'bg-dark-primary-bg'} text-white`;
-
   
   return (
     <div className='overflow-hidden'>
