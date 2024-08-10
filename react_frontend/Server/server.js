@@ -5,13 +5,13 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { v2 as cloudinary } from 'cloudinary';
 import fileUpload from 'express-fileupload';
-import router from './routes/allRoutes.js'; // Corrected path assuming both files are in the same directory
+import router from './routes/allRoutes.js';
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI;
-// const SECRET_KEY = process.env.SECRET_KEY;
+const mongoURI = process.env.MONGODB_URI;
+const SECRET_KEY = process.env.SECRET_KEY;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUTD_NAME,
@@ -35,7 +35,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log(`Mongodb is connected on port ${PORT}`))
   .catch((err) => console.error('Mongodb connection error', err));
 
