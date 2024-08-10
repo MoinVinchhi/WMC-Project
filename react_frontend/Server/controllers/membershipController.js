@@ -21,7 +21,7 @@ export const quizPoints = async (req, res) => {
         return res.status(404).json({ error: 'User not found' });
       }
         
-      user.points = user.points-Number(addPoints);
+      user.points = user.points+Number(addPoints);
       const updatedUser = await user.save();
       res.json({user: updatedUser});
       

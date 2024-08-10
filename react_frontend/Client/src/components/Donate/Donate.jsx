@@ -19,7 +19,9 @@ function Donate() {
   const fetchData = async () => {
     if (auth.email) {
       try {
+        
         const response = await fetch(`http://localhost:5000/getalluser/${auth.email}`);
+
         const data = await response.json();
         setUserData(data);
       } catch (error) {
@@ -50,7 +52,6 @@ function Donate() {
   }, [userData.points]);
 
   const handleDonate = async (donationAmount) => {
-    event.preventDefault();
     if (donationAmount <= 0) {
       Swal.fire({
         title: 'Error!',
@@ -62,6 +63,8 @@ function Donate() {
     }
     setError(null);
     try {
+      console.log(auth.email);
+
       const response = await fetch(`http://localhost:5000/donate/${auth.email}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

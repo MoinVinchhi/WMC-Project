@@ -58,7 +58,7 @@ export const updateUserByEmail =  async (req, res) => {
       await adminUser.save();
   
       user.membership_id = membership_id;
-      user.points += addPoints;
+      user.points -= addPoints;
       const updatedUser = await user.save();
   
       res.json({ user: updatedUser, admin: adminUser });
