@@ -1,0 +1,27 @@
+[
+    {
+      "question": "What is the name of the cult in GTA 5 that is associated with the Epsilon Program?",
+      "options": ["The Epsilon Program", "The Cult of Miley Cyrus", "The Children of the Mountain", "The Seekers of Truth"],
+      "answer": "The Children of the Mountain"
+    },
+    {
+      "question": "What is the name of the leader of the Epsilon Program?",
+      "options": ["Cris Formage", "Miley Cyrus", "Franklin Clinton", "Michael De Santa"],
+      "answer": "Cris Formage"
+    },
+    {
+      "question": "What is the main goal of the Epsilon Program?",
+      "options": ["To take over the world", "To find inner peace", "To make money", "To help people"],
+      "answer": "To find inner peace"
+    },
+    {
+      "question": "How many Epsilon missions are there in GTA 5?",
+      "options": ["5", "6", "7", "8"],
+      "answer": "6"
+    },
+    {
+      "question": "What is the reward for completing all Epsilon missions?",
+      "options": ["$100,000", "$200,000", "$300,000", "$400,000"],
+      "answer": "$200,000"
+    }
+  ]

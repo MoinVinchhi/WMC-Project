@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,300,700');
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,900');
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+/* body {
+  background: linear-gradient(#f6f7fc 0%, #d5e1e8 40%);
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10%;
+} */
+
+#card_container {
+  width: 90%;
+  max-width: 700px;
+  position: relative;
+}
+
+#card {
+  animation: backAn 50s infinite;
+  color: #fff;
+  padding: 20px;
+  position: relative;
+  /* background: url('https://riverbeats.life/neworleans/wp-content/uploads/2018/07/Atlantis.png') no-repeat center bottom; */
+  background: url('../../assets/images/Group_image.jpg') no-repeat center bottom;
+  background-size: cover;
+  box-shadow: 0px 45px 100px rgba(0, 0, 0, 0.4), inset 0 0 0 1000px rgba(0, 76, 86, 0.6);
+  border-radius: 10px;
+}
+
+.text-block {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.text-block h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.text-block h1 small {
+  font-size: 0.6rem;
+  color: #ccc;
+}
+
+.text-block h3 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.text-block p {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.text-block button {
+  transition: all 0.35s cubic-bezier(0.37, 0.26, 0.35, 1);
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  background: transparent;
+  font-family: 'Rubik', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.text-block button:hover {
+  background: #004c56;
+}
+
+.pg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.pg img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 60%);
+  z-index: 1;
+}
+
+@keyframes backAn {
+  0% {
+    background-size: 100%;
+  }
+  50% {
+    background-size: 250%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}

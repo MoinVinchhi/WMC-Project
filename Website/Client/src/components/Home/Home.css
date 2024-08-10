@@ -1,0 +1,164 @@
+.textContainer {
+    /* z-index: 1; */
+    position: relative;
+    background-image: url('../../assets/images/bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.textContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.353);
+    z-index: 1;
+}
+
+.textContainer .content {
+    position: relative;
+    z-index: 2;
+}
+
+.reactText {
+    z-index: 5;
+    background: rgba(19, 135, 229, 0.293);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+
+/* events */
+.eventsContainer {
+    /* z-index: 1; */
+    background: rgb(47,92,153);
+    background: linear-gradient(0deg, rgba(47,92,153,1) 0%, rgba(41,82,139,1) 45%, rgba(37,37,37,1) 98%);
+}
+
+.eventsPage {
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+}
+
+
+/* section */
+.sectionClass {
+    background: rgb(32,33,34);
+    background: linear-gradient(0deg, rgba(32,33,34,1) 0%, rgba(41,82,139,1) 45%, rgba(47,92,153,1) 98%);
+}
+
+
+
+/* stories */
+.stories {
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.9px);
+    -webkit-backdrop-filter: blur(6.9px);
+}
+
+.storiesContainer {
+    /* z-index: 1; */
+    background: rgb(18,18,19);
+    background: linear-gradient(0deg, rgba(18,18,19,1) 8%, rgba(18,43,78,1) 45%, rgba(47,92,153,1) 100%);
+}
+
+
+/* profile */
+.profileContainer {
+    background: rgb(40,109,140);
+background: linear-gradient(0deg, rgba(40,109,140,1) 26%, rgba(79,128,165,1) 57%, rgba(79,155,201,1) 93%);
+}
+
+.profilePart {
+    z-index: 5;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.1px);
+    -webkit-backdrop-filter: blur(4.1px);
+}
+
+/* story */
+.addstoryPart {
+    z-index: 5;
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.05);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.7px);
+-webkit-backdrop-filter: blur(2.7px);
+}
+
+.storyContainer {
+    z-index: 1;
+    background: rgb(53,95,103);
+background: linear-gradient(0deg, rgba(53,95,103,1) 26%, rgba(64,111,118,1) 57%, rgba(103,165,162,1) 93%);
+}
+
+.storyPart {
+    z-index: 5;
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.05);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.2px);
+-webkit-backdrop-filter: blur(2.2px);
+
+}
+
+
+/* event */
+.eventContainer {
+    z-index: 1;
+    background: rgb(2,60,74);
+background: linear-gradient(0deg, rgba(2,60,74,1) 4%, rgba(32,89,98,1) 57%, rgba(50,106,122,1) 93%);
+}
+
+.eventPart {
+    z-index: 5;
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.05);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4.1px);
+-webkit-backdrop-filter: blur(4.1px);
+}
+
+.eventCard {
+    z-index: 5;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.1px);
+    -webkit-backdrop-filter: blur(4.1px);
+}
+
+/* donate */
+.donateContainer {
+    z-index: 1;
+    background: rgb(2,60,74);
+background: linear-gradient(0deg, rgba(2,60,74,1) 4%, rgba(32,89,98,1) 57%, rgba(50,106,122,1) 93%);
+}
+
+.donatePart {
+    z-index: 5;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.1px);
+    -webkit-backdrop-filter: blur(4.1px);
+}

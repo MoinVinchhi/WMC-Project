@@ -1,0 +1,171 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Pricedown&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Josefin+Sans&family=Just+Me+Again+Down+Here&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teko:wght@300..700&family=Tektur:wght@400..900&display=swap');
+
+@font-face{
+  font-family: myvrunda;
+  src: url('../src/assets/pricedown.otf');
+}
+@font-face{
+  font-family: sitter;
+  src: url('../src/assets/Slitter-W2GE.ttf');
+}
+
+@font-face {
+  font-family: Jovelyn;
+  src: url('../src/assets/JovelynDemoRegular-V4q8y.otf');
+}
+
+@font-face{
+  font-family: Mafia;
+  src: url('../src/assets/MafiaHollowItalic-lxd25.ttf');
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Jovelyn'; /* Default font */
+}
+
+body {
+  background-image: url('https://images.unsplash.com/photo-1533835616452-89e5f8e4f9f5');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: var(--text-color);
+  font-family: 'Pricedown', sans-serif; /* Apply GTA V font to body */
+  background-color: var(--bg-color); /* Fallback color */
+  cursor: url("./assets/images/character_ep.jpg"),auto;
+}
+
+/* //Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  position: absolute;
+  background: black;
+  z-index: -1000;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #047bb3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f3f3f3; 
+}
+
+:root {
+  --bg-color: #1e3a8a; /* Default Blue */
+  --text-color: #dbeafe; /* Default Blue Text */
+  --accent-color: #f59e0b; /* Bright Accent Color */
+  --overlay-opacity: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  --background-image: url('./assets/images/bg.png'); /* Default Background Image */
+}
+
+[data-theme='dark'] {
+  --bg-color: #1a202c;
+  --text-color: #edf2f7;
+  --accent-color: #fbbf24; /* Light Accent Color for dark theme */
+  --overlay-opacity: rgba(0, 0, 0, 0.7); /* Darker overlay for dark theme */
+  --background-image: url('./assets/images/bg.png'); /* Dark Theme Background Image */
+}
+
+.page-background {
+  background-image: url('./assets/images/bg.png'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-opacity); /* Semi-transparent overlay */
+  z-index: 0; /* Place it behind content */
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  h1, h2, h3 {
+    font-family: 'Mafia', sans-serif; 
+    
+    padding: 0.5rem; /* Padding around the text */
+    margin-bottom: 1rem; /* Spacing between headings and content */
+    letter-spacing: 0.09em; /* Adjust spacing between characters */
+    line-height: 1.2; /* Adjust spacing between lines of text */
+    word-spacing: 0.1em; /* Adjust spacing between words */
+  }
+
+  h1 {
+    font-family: 'Mafia';
+    text-shadow: 1px 1px 2px rgba(215, 255, 210, 0.6); 
+    font-size: 2rem; /* Size for main headings */
+    color: #a6ff00; /* Light Steel Blue */
+    margin-bottom: 1.5rem; /* More spacing for larger headings */
+  }
+
+  h2 {
+    font-size: 2rem; /* Size for secondary headings */
+    color:gold; /* Blue Violet */
+    margin-bottom: 1.25rem;
+  }
+
+  h3 {
+    font-size: 2rem; /* Size for tertiary headings */
+    color: #e131a1; /* Steel Blue */
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: 'Jovelyn', sans-serif; /* GTA V font for paragraphs */
+    line-height: 2.6;
+    font-size: medium;
+    /* color: #d6eeaa; */
+    color:aliceblue;
+  }
+}
+
+button {
+  font-family: 'Pricedown', sans-serif; /* GTA V font for buttons */
+  /* background-color: var(--accent-color); */
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card {
+  background-color: var(--bg-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-card);
+  padding: 1.5rem;
+  margin: 1rem;
+}
+
+.footer {
+  position: relative;
+  z-index: 10; /* Higher than parallax sections */
+}
