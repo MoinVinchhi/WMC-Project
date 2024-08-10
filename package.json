@@ -7,6 +7,8 @@
     "dotenv": "^16.4.5",
     "leaflet": "^1.9.4",
     "postcss": "^8.4.39",
+    "react-ga": "^3.3.1",
+    "react-ga4": "^2.1.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.24.1",
     "react-toastify": "^10.0.5",
