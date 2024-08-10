@@ -21,7 +21,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('https://wmc-project-av5d.onrender.com/login', { email, password });
       if (response.status === 200) {
         const { username, token, points, isAdmin ,email} = response.data;
         

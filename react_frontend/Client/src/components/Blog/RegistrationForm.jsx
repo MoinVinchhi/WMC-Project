@@ -34,7 +34,7 @@ const EventRegistrationForm = ({ isOpen, onClose, event }) => {
     
     try {
         // Send the data to the server
-        const response = await fetch('http://localhost:5000/api/eventRegister', {
+        const response = await fetch('https://wmc-project-av5d.onrender.com/api/eventRegister', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

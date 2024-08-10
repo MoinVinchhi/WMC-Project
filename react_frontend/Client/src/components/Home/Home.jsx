@@ -41,7 +41,7 @@ function Home() {
   useEffect(() => {
     setLoading(true);
 
-    axios.get('http://localhost:5000/api/events')
+    axios.get('https://wmc-project-av5d.onrender.com/api/events')
       .then(response => {
         const today = moment().startOf('day');
         const upcomingEvents = response.data.filter(event => moment(event.date).isAfter(today));
@@ -50,7 +50,7 @@ function Home() {
       })
       .catch(error => console.error(error));
 
-    axios.get('http://localhost:5000/stories')
+    axios.get('https://wmc-project-av5d.onrender.com/stories')
       .then(response => {
         const sortedStories = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setStories(sortedStories || []);
@@ -58,7 +58,7 @@ function Home() {
       .catch(error => console.error(error))
       .finally(() => setLoading(false));
 
-    axios.get('http://localhost:5000/news')
+    axios.get('https://wmc-project-av5d.onrender.com/news')
       .then(response => {
         const sortedNews = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setNews(sortedNews || []);
