@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../creatContext';
-
+import React, { useState } from "react";
+import { useAuth } from "../../creatContext";
 
 const EventRegistrationForm = ({ isOpen, onClose, event }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [auth]=useAuth();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [auth] = useAuth();
 
   if (!isOpen) return null;
 
@@ -19,45 +18,44 @@ const EventRegistrationForm = ({ isOpen, onClose, event }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSuccessMessage('');
-    setErrorMessage('');
-  
+    setSuccessMessage("");
+    setErrorMessage("");
+
     // Prepare the data to be sent
     const registrationData = {
-        eventId: event._id, // Assuming event has an _id property
-        eventName: event.title,
-        eventPoint:event.points,
-        membership_id: auth.membership_id,
-        ...formData,
+      eventId: event._id, // Assuming event has an _id property
+      eventName: event.title,
+      eventPoint: event.points,
+      membership_id: auth.membership_id,
+      ...formData,
     };
     console.log(auth);
-    
-    try {
-        // Send the data to the server
-        const response = await fetch('https://wmc-project-av5d.onrender.com/api/eventRegister', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(registrationData),
-        });
-  
-        const result = await response.json();
-        
-        if (response.ok) {
-            setSuccessMessage('Registration successful!');
-            setFormData({ name: '', email: '', phone: '' });
-        } else {
-            setErrorMessage(result.error || 'Error registering');
-        }
-    } catch (error) {
-        setErrorMessage('Error submitting form');
-        console.error('Error submitting form:', error);
-    } finally {
-        setIsSubmitting(false);
-    }
-};
 
+    try {
+      // Send the data to the server
+      const response = await fetch("https://wmc-project-av5d.onrender.com/api/eventRegister", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSuccessMessage("Registration successful!");
+        setFormData({ name: "", email: "", phone: "" });
+      } else {
+        setErrorMessage(result.error || "Error registering");
+      }
+    } catch (error) {
+      setErrorMessage("Error submitting form");
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -109,10 +107,12 @@ const EventRegistrationForm = ({ isOpen, onClose, event }) => {
               disabled={isSubmitting}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              {isSubmitting ? 'Registering...' : 'Register'}
+              {isSubmitting ? "Registering..." : "Register"}
             </button>
           </div>
-          {successMessage && <p className="text-green-500 mt-2">{successMessage}</p>}
+          {successMessage && (
+            <p className="text-green-500 mt-2">{successMessage}</p>
+          )}
           {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
         </form>
       </div>

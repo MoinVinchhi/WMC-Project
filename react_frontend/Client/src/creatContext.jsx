@@ -1,13 +1,24 @@
-import { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { createContext, useState, useEffect, useContext } from "react";
+import axios from "axios";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const initialAuthState = () => {
     const data = localStorage.getItem("auth");
-    return data ? JSON.parse(data) 
-    : { username: "", token: "", isLoggedIn: false, isAdmin: false, membership_id: null, userPoints: 0, lastAttempt: null,email: "",  image: ""   };
+    return data
+      ? JSON.parse(data)
+      : {
+          username: "",
+          token: "",
+          isLoggedIn: false,
+          isAdmin: false,
+          membership_id: null,
+          userPoints: 0,
+          lastAttempt: null,
+          email: "",
+          image: "",
+        };
   };
 
   const [auth, setAuth] = useState(initialAuthState);
@@ -20,7 +31,9 @@ const AuthProvider = ({ children }) => {
   const fetchData = async () => {
     if (auth.email) {
       try {
-        const response = await axios.get(`https://wmc-project-av5d.onrender.com/getalluser/${auth.email}`);
+        const response = await axios.get(
+          `https://wmc-project-av5d.onrender.com/getalluser/${auth.email}`
+        );
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -34,19 +47,26 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (userData?.points) {
-      setAuth(prevAuth => ({ ...prevAuth, userPoints: userData.points }));
+      setAuth((prevAuth) => ({ ...prevAuth, userPoints: userData.points }));
     }
     if (userData?.membership_id) {
-      setAuth(prevAuth => ({ ...prevAuth, membership_id: userData.membership_id }));
+      setAuth((prevAuth) => ({
+        ...prevAuth,
+        membership_id: userData.membership_id,
+      }));
     }
     if (userData?.lastAttempt) {
-      setAuth(prevAuth => ({ ...prevAuth, lastAttempt: userData.lastAttempt }));
+      setAuth((prevAuth) => ({
+        ...prevAuth,
+        lastAttempt: userData.lastAttempt,
+      }));
     }
     if (userData?.email) {
-      setAuth(prevAuth => ({ ...prevAuth, email: userData.email }));
+      setAuth((prevAuth) => ({ ...prevAuth, email: userData.email }));
     }
-    if (userData?.image) {  // Add this line
-      setAuth(prevAuth => ({ ...prevAuth, image: userData.image }));
+    if (userData?.image) {
+      // Add this line
+      setAuth((prevAuth) => ({ ...prevAuth, image: userData.image }));
     }
   }, [userData]);
 
