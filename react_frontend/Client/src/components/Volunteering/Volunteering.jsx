@@ -12,7 +12,7 @@ function Volunteering() {
   const [auth] = useAuth();
 
   useEffect(() => {
-    axios.get('https://wmc-project-av5d.onrender.com/api/events')
+    axios.get('http://localhost:5000/api/events')
       .then(response => {
         setEvents(response.data || []);
         setLoading(false);
@@ -23,7 +23,7 @@ function Volunteering() {
         setLoading(false);
       });
 
-    axios.get('https://wmc-project-av5d.onrender.com/api/volunteers')
+    axios.get('http://localhost:5000/api/volunteers')
       .then(response => {
         const statusMap = {};
         response.data.forEach(volunteer => {
@@ -45,7 +45,7 @@ function Volunteering() {
     }));
 
     // Send interest request to the backend
-    axios.post('https://wmc-project-av5d.onrender.com/api/volunteers', { eventId: event._id, userId: auth.userId })
+    axios.post('http://localhost:5000/api/volunteers', { eventId: event._id, userId: auth.userId })
       .then(response => {
         // Optionally handle the response
       })

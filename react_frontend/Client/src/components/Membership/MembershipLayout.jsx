@@ -45,7 +45,7 @@ const MembershipLayout = () => {
   
       // Check if the user confirmed the action
       if (result.isConfirmed) {
-        const response = await fetch(`https://wmc-project-av5d.onrender.com/updateuser/${auth.email}`, {
+        const response = await fetch(`http://localhost:5000/updateuser/${auth.email}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
