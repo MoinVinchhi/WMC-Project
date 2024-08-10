@@ -18,7 +18,7 @@ const AdminDonations = () => {
   // Fetch user donations data
   const fetchUserDonations = async () => {
     try {
-      const response = await fetch('http://localhost:5000/user-donations');
+      const response = await fetch('https://wmc-project-av5d.onrender.com/user-donations');
       if (!response.ok) {
         throw new Error('Failed to fetch user donations');
       }

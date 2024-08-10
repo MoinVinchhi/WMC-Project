@@ -44,7 +44,7 @@ export default function App() {
     formData.append('file', value.image);
 
     try {
-      const response = await axios.post("http://localhost:5000/register", formData, {
+      const response = await axios.post("https://wmc-project-av5d.onrender.com/register", formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

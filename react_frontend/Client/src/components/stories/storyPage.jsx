@@ -21,7 +21,7 @@ const StoryPage = () => {
     const fetchStories = async () => {
       try {
         setLoading(true); // Start loading
-        const response = await fetch('http://localhost:5000/stories');
+        const response = await fetch('https://wmc-project-av5d.onrender.com/stories');
         if (!response.ok) {
           throw new Error('Failed to fetch stories');
         }
@@ -42,7 +42,7 @@ const StoryPage = () => {
     if (!newStory) return;
 
     try {
-      const response = await fetch('http://localhost:5000/stories', {
+      const response = await fetch('https://wmc-project-av5d.onrender.com/stories', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const StoryPage = () => {
   
       if (result.isConfirmed) {
         // Proceed with deletion
-        const response = await fetch(`http://localhost:5000/stories/${id}`, {
+        const response = await fetch(`https://wmc-project-av5d.onrender.com/stories/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
