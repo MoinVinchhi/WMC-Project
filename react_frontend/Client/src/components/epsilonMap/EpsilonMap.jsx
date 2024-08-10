@@ -94,7 +94,7 @@ const EpsilonMap = () => {
   return (
     <div className="flex flex-col h-screen justify-center">
       {/* Fixed header */}
-      <header className="bg-zinc-900 p-4 shadow-md">
+      <header className="bg-zinc-900 p-4 z-10 shadow-md">
         <h1 className="text-xl font-bold">Epsilon Program Locations</h1>
         <p className="text-sm">Explore the various centers and significant locations of the Epsilon Program.</p>
       </header>

@@ -14,9 +14,9 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const SECRET_KEY = process.env.SECRET_KEY;
 
 cloudinary.config({
-  cloud_name: 'dbztb7wzq',
-  api_key: '868667515988417',
-  api_secret: 'y9S2ipJCaLIV52IQ6lFQQtdipk8'
+  cloud_name: process.env.CLOUDINARY_CLOUTD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 app.use(fileUpload({

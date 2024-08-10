@@ -150,12 +150,12 @@ function Blog() {
           <>
             {currentEvents.length > 0 && (
               <div className="eventPart p-4 mb-12">
-                <h3 className="sticky top-0 mt-0 text-white text-5xl font-semibold mb-6 text-center">Current Event</h3>
+                <h4 className="sticky top-0 mt-0 text-white text-5xl font-semibold mb-6 text-center">Current Event</h4>
                 {renderEvents(currentEvents)}
               </div>
             )}
             <div className="eventPart p-4 mb-12">
-              <h3 className="sticky top-0 mt-0 text-white text-5xl font-semibold mb-6 text-center">Upcoming Events</h3>
+              <h4 className="sticky top-0 mt-0 text-white text-5xl font-semibold mb-6 text-center">Upcoming Events</h4>
               {upcomingEvents.length > 0 ? (
                 renderEvents(upcomingEvents)
               ) : (
@@ -163,7 +163,7 @@ function Blog() {
               )}
             </div>
             <div className='eventPart p-4'>
-              <h3 className="text-5xl text-white font-semibold mb-6 text-center">Past Events</h3>
+              <h4 className="text-5xl text-white font-semibold mb-6 text-center">Past Events</h4>
               {pastEvents.length > 0 ? (
                 renderEvents(pastEvents)
               ) : (

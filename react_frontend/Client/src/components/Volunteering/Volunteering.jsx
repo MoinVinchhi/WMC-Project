@@ -61,7 +61,7 @@ function Volunteering() {
         {eventsList.map((event) => (
           <div
             key={event._id}
-            className="eventCard flex bg-zinc-800 shadow-lg rounded-lg overflow-hidden transform transition-all duration-300"
+            className="eventCard flex bg-zinc-800 shadow-lg rounded-lg overflow-hidden transition-all duration-300"
           >
             <div className="w-52 bg-gray-800 text-white flex-shrink-0 p-4 text-center flex flex-col justify-center items-center relative">
               <img src={event.image || './src/assets/images/blank.png'} className="absolute inset-0 object-cover w-full h-full opacity-30" />
@@ -131,7 +131,7 @@ function Volunteering() {
   );
 
   return (
-    <div className='profileContainer'>
+    <div className='donateContainer'>
       <div className='relative flex justify-end p-8 min-h-screen overflow-hidden'>
         <div className='fixed left-0 top-30 flex flex-col p-16'>
           <h1 className='text-3xl text-left text-white m-0 p-0'>VOLUNTEERING</h1>
@@ -145,7 +145,19 @@ function Volunteering() {
               <p>Loading events...</p>
             </div>
           ) : (
-            <div className="eventPart p-4 mb-12">
+            <div className="p-6 mb-12 storyPart text-white rounded-lg shadow-lg">
+              <h4 className="text-lg mb-3">
+                If you're interested in volunteering for any of the upcoming events listed below, you can show your interest by clicking the <span className="text-blue-400">"Show Interest"</span> button. Your request will be reviewed by our admin team, and upon approval, you will have the opportunity to volunteer for the event.
+              </h4>
+
+              <h4 className="text-lg mb-3">
+                As a token of appreciation for your time and effort, you'll earn <span className="text-green-400">20 points</span> after successfully completing the volunteering.
+              </h4>
+
+              <h4 className="text-lg mb-4">
+                Don't miss out on this chance to contribute and earn rewards!
+              </h4>
+
               {renderEvents(events)}
             </div>
           )}

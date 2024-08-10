@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUser, FaSun, FaMoon, FaBars, FaTimes ,FaCaretDown} from 'react-icons/fa';
-import { MdCurrencyBitcoin } from 'react-icons/md';
 import { useAuth } from '../../creatContext';
 import { useTheme } from '../../usetheamContext';
 import './Navbar.css';
@@ -16,7 +15,6 @@ import mem from '../../assets/images/member-card.png'
 import event from '../../assets/images/event.png'
 import story from '../../assets/images/stories.png'
 import profile from '../../assets/images/profile.png'
-// import quiz from '../../assets/images/quiz.png'
 import { FcHome } from "react-icons/fc";
 import { MdQuiz } from "react-icons/md";
 import { FaCircleInfo } from "react-icons/fa6";
@@ -34,7 +32,7 @@ const Navbar = () => {
 
 
   useEffect(() => {
-    console.log('Auth state:', auth);
+    // console.log('Auth state:', auth);
   }, [auth]);
 
   const handleDropdownClose = () => {
@@ -88,10 +86,6 @@ const Navbar = () => {
           className="w-12 h-12 border-white text-lg font-bold truncate relative left-4 bottom-8"
         />
       </Link>
-      {/* Theme Toggle Button */}
-      {/* <button onClick={toggleTheme} className={buttonClass} aria-label="Toggle Theme">
-        {theme === 'dark' ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-500" />}
-      </button> */}
 
       {/* Mobile Menu Toggle Button */}
       <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className={`md:hidden ${buttonClass}`} aria-label="Toggle Menu">
@@ -101,7 +95,16 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <nav className={`md:hidden fixed inset-0 bg-white dark:bg-gray-800 p-5 ${isMobileMenuOpen ? 'block' : 'hidden'} flex flex-col items-center`}>
         <div className="flex justify-between items-center mb-4 w-full">
-          <a href="/" className="text-lg font-bold">Logo</a>
+          <div className='flex'>
+            <div className='ml-12 mt-2 flex'>
+              <HiCurrencyDollar size="1.5em"  />
+              <span className="ml-2 truncate">
+                {auth.userPoints !== undefined && auth.userPoints !== null 
+                  ? auth.userPoints.toFixed(2) 
+                  : '0.00'}
+              </span>
+            </div>
+          </div>
           <button onClick={() => setIsMobileMenuOpen(false)} className={buttonClass} aria-label="Close Menu">
             <FaTimes />
           </button>
@@ -131,22 +134,25 @@ const Navbar = () => {
                 <Link to={auth.membership_id ? `/epsilon_program_membership/${auth.membership_id}` : '/membership'} className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Membership</Link>
               </li>
               <li>
-                <Link to="/storyPage" className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Stories</Link>
+                <Link to="/Blog" className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
               </li>
               <li>
-                <Link to="/Blog" className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+                <Link to="/storyPage" className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Stories</Link>
               </li>
               <li>
                 <Link to="/Donate" className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Donate</Link>
               </li>
               <li>
-                <Link to='/About' className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+                <Link to="/Volunteering" className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Donate</Link>
               </li>
               <li>
                 <Link to='/Quiz' className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Quiz</Link>
               </li>
               <li>
                 <Link to='/epsilonMap' className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>EpsilonMap</Link>
+              </li>
+              <li>
+                <Link to='/About' className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
               </li>
               <li>
                 <Link to='/inquiryForm' className="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 truncate" onClick={() => setIsMobileMenuOpen(false)}>Inquiry Form</Link>
@@ -184,40 +190,44 @@ const Navbar = () => {
         {auth.isLoggedIn && (
           <div onClick={handleDropdownClose} className="flex items-center space-x-2 hover:no-underline">
             <HiCurrencyDollar size="1.5em" />
-            <span className="ml-2 truncate">{auth.userPoints}</span>
+            <span className="ml-2 truncate">
+                {auth.userPoints !== undefined && auth.userPoints !== null 
+                  ? auth.userPoints.toFixed(2) 
+                  : '0.00'}
+              </span>
           </div>
         )}
         <ul className="flex flex-center items-center justify-between space-x-7">
           <li onClick={handleDropdownClose} className="flex items-center space-x-1">
             <FcHome className='text-[20px]'/>
-            <Link to="/" className={`hover:no-underline ${window.location.pathname === '/' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Home</Link>
+            <Link to="/" className={`hover:text-blue-300 transition-all duration-300 hover:no-underline ${window.location.pathname === '/' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Home</Link>
           </li>
           {auth.isAdmin ? (
             <>
               <li className="flex items-center space-x-1 ">
               <img src={event} alt="img" className="w-6 h-6" />
 
-             <Link to='/events' className={`hover:no-underline ${window.location.pathname === '/events' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Events</Link>
+             <Link to='/events' className={`hover:no-underline ${window.location.pathname === '/events' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Events</Link>
               </li>
               <li className="flex items-center space-x-1 ">
-                <Link to='/admin' className={`hover:no-underline ${window.location.pathname === '/admin' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Donation Users</Link>
-              </li>
-              <li className="flex items-center space-x-1 ">
-
-                <Link to='/allusers' className={`hover:no-underline ${window.location.pathname === '/allusers' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Show Users</Link>
+                <Link to='/admin' className={`hover:no-underline ${window.location.pathname === '/admin' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Donation Users</Link>
               </li>
               <li className="flex items-center space-x-1 ">
 
-                <Link to='/VolunteeringRequests' className={`hover:no-underline ${window.location.pathname === '/VolunteeringRequests' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Volunteer Requests</Link>
+                <Link to='/allusers' className={`hover:no-underline ${window.location.pathname === '/allusers' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Show Users</Link>
               </li>
               <li className="flex items-center space-x-1 ">
 
-                <Link to='/allinquires' className={`hover:no-underline ${window.location.pathname === '/allinquires' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>All Inquires</Link>
+                <Link to='/VolunteeringRequests' className={`hover:no-underline ${window.location.pathname === '/VolunteeringRequests' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1 ' : ''}`}>Volunteer Requests</Link>
+              </li>
+              <li className="flex items-center space-x-1 ">
+
+                <Link to='/allinquires' className={`hover:no-underline ${window.location.pathname === '/allinquires' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>All Inquires</Link>
               </li>
               
               <li className="flex items-center space-x-1 ">
               <GiNewspaper/>
-                <Link to='/AddNews' className={`hover:no-underline ${window.location.pathname === '/allinquires' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Add News</Link>
+                <Link to='/AddNews' className={`hover:no-underline ${window.location.pathname === '/allinquires' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Add News</Link>
               </li>
             </>
           ) : (
@@ -227,29 +237,30 @@ const Navbar = () => {
                <Link to="/Profile" className={`hover:no-underline ${window.location.pathname === '/Profile' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Profile</Link>
               </li> */}
               <div onClick={handleDropdownClose} className='flex gap-6'>
+
               <li className="flex items-center space-x-2 ">
               <img src={mem} alt="membership" className="w-5 h-5" />
-              <Link to={auth.membership_id ? `/epsilon_program_membership/${auth.membership_id}` : '/membership'} className={`hover:no-underline ${window.location.pathname.includes('/epsilon_program_membership') || window.location.pathname === '/membership' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Membership</Link>
+              <Link to={auth.membership_id ? `/epsilon_program_membership/${auth.membership_id}` : '/membership'} className={`hover:no-underline hover:text-blue-300 transition-all duration-300  ${window.location.pathname.includes('/epsilon_program_membership') || window.location.pathname === '/membership' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Membership</Link>
               </li>
 
               <li className="flex items-center space-x-2 ">
               <img src={event} alt="img" className="w-5 h-5" />
-              <Link to="/Blog" className={`hover:no-underline ${window.location.pathname === '/Blog' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Blog</Link>
+              <Link to="/Blog" className={`hover:text-blue-300 transition-all duration-300 hover:no-underline ${window.location.pathname === '/Blog' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Blog</Link>
               </li>
 
               <li className="flex items-center space-x-2 ">
               <img src={story} alt="img" className="w-5 h-5" />
-              <Link to="/storyPage" className={`hover:no-underline ${window.location.pathname === '/storyPage' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Stories</Link>
+              <Link to="/storyPage" className={`hover:text-blue-300 transition-all duration-300 hover:no-underline ${window.location.pathname === '/storyPage' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Stories</Link>
               </li>
 
 
               <li className="flex items-center space-x-2 ">
                 <FcDonate className='text-[20px]'/>
-              <Link to="/Donate" className={`hover:no-underline ${window.location.pathname === '/Donate' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Donate</Link>
+              <Link to="/Donate" className={`hover:text-blue-300 transition-all duration-300 hover:no-underline ${window.location.pathname === '/Donate' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Donate</Link>
               </li>
 
               <li className="flex items-center space-x-2 p-2">
-              <Link to="/Volunteering" className={`hover:no-underline ${window.location.pathname === '/Volunteering' ? 'font-bold text-blue-500 dark:text-blue-300' : ''}`}>Volunteering</Link>
+              <Link to="/Volunteering" className={`hover:text-blue-300 transition-all duration-300 hover:no-underline ${window.location.pathname === '/Volunteering' ? 'font-bold text-blue-500 dark:text-blue-300 border-b border-blue-300 pb-1' : ''}`}>Volunteering</Link>
               </li>
             </div>
 
@@ -263,7 +274,7 @@ const Navbar = () => {
               More <FaCaretDown className="inline ml-2" />
             </button>
             {isDropdownOpen && (
-              <ul className="absolute mt-2 right-0 pl-2 bg-white dark:bg-gray-800 shadow-lg rounded-lg w-48 z-10 " >
+              <ul className="absolute mt-2 right-0 pl-2 bg-white dark:bg-gray-800 shadow-lg rounded-lg w-48 z-[100]" >
 
                 <li className="flex items-center space-x-2 p-2">
                   <MdQuiz />
