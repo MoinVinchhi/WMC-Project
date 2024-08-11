@@ -52,7 +52,8 @@ export const updateUserByEmail =  async (req, res) => {
       if (!adminUser) {
         return res.status(404).json({ error: 'Admin user not found' });
       }
-  
+      
+      
       // Update points and membership ID
       adminUser.points += addPoints;
       await adminUser.save();

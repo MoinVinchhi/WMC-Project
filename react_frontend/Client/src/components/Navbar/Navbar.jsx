@@ -99,8 +99,8 @@ const Navbar = () => {
             <div className='ml-12 mt-2 flex'>
               <HiCurrencyDollar size="1.5em"  />
               <span className="ml-2 truncate">
-                {auth.userPoints !== undefined && auth.userPoints !== null 
-                  ? auth.userPoints.toFixed(2) 
+                {auth.points !== undefined && auth.points !== null 
+                  ? auth.points.toFixed(2) 
                   : '0.00'}
               </span>
             </div>
@@ -191,9 +191,14 @@ const Navbar = () => {
           <div onClick={handleDropdownClose} className="flex items-center space-x-2 hover:no-underline">
             <HiCurrencyDollar size="1.5em" />
             <span className="ml-2 truncate">
-                {auth.userPoints !== undefined && auth.userPoints !== null 
+            {auth.isAdmin ? 
+                (auth.points !== undefined && auth.points !== null 
+                  ? auth.points.toFixed(2) 
+                  : '0.00') 
+                : (auth.userPoints !== undefined && auth.userPoints !== null 
                   ? auth.userPoints.toFixed(2) 
-                  : '0.00'}
+                  : '0.00')}
+               
               </span>
           </div>
         )}
